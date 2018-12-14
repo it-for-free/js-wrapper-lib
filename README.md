@@ -1,7 +1,7 @@
 # js-wrapper-lib
 
-* eng: javascript helpers, wrappers for core functions
-* ru: Библиотека удобных оберток для стандартных функций javascript
+* `eng`: javascript helpers, wrappers for core functions
+* `ru`: Библиотека удобных оберток для стандартных функций javascript
 
 ## Usage | Использование
 
