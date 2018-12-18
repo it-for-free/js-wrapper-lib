@@ -45,13 +45,30 @@ function JSWrapperLib() {
     }
 
     /**
-     * Проверка на пустоту
+     * Проверка на пустоту, пусто если:
+     *  - тип = "undefined"
+     *  - = null
+     *  - = ноль
+     *  - = пустой строке
      * 
-     * @param {mixed} value
-     * @returns {Boolean}  проверяемое значение
+     * @param {mixed} value  проверяемое значение
+     * @returns {Boolean} 
      */
     this.isEmpty = function(value) {
-        return (typeof value === "undefined" || value === null || value ===  "");
+        return (typeof value === "undefined" || value === null 
+            || value ===  "" || value ===  0);
+    }
+    
+    /**
+     * Определено ли значение:
+     * - тип не "undefined"
+     * - не = null
+     * 
+     * @param {mixed} value  проверяемое значение
+     * @returns {Boolean} 
+     */
+    this.isDefined = function(value) {
+        return (typeof value !== "undefined" && value !== null);
     }
 
     /**
@@ -71,7 +88,7 @@ function JSWrapperLib() {
 
 
     /**
-     * Получит фрагментs строки фрагмент, если её части 
+     * Получит фрагмент строки, если её части 
      * разделены квадратными скобками в виде массива,
      *  например дпя:
      * people[123][groups][34][2]
