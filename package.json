@@ -1,0 +1,27 @@
+{
+  "name": "js-wrapper-lib",
+  "version": "0.0.1",
+  "description": "js functions wrappers library",
+  "main": "./src/jswl.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/it-for-free/js-wrapper-lib.git"
+  },
+  "keywords": [
+    "javascript",
+    "wrapper",
+    "library",
+    "helpers",
+    "core",
+    "functions"
+  ],
+  "author": "it-for-free",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/it-for-free/js-wrapper-lib/issues"
+  },
+  "homepage": "https://github.com/it-for-free/js-wrapper-lib#readme"
+}

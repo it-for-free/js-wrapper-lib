@@ -1,3 +1,5 @@
+export {jswl};
+
 var jswl = new JSWrapperLib();
 
 /**
