@@ -17,3 +17,9 @@ jswl.functionName();
 jswl.isEmpty(value);
 ```
 
+## Публикация очередной версии
+
+```
+npm publish
+```
+
