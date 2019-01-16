@@ -122,4 +122,15 @@ function JSWrapperLib() {
     {
         return (str.indexOf(substr) !== -1);
     }
+    
+    /**
+     * Тестовый вызов jswl (привет мир) 
+     * Test jswl exists
+     *   
+     * @returns {undefined}
+     */
+    this.hello = function()
+    {
+        console.log('Hello JSWL! ;)');
+    }
 }
