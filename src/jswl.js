@@ -1,4 +1,4 @@
-export {jswl};
+export default jswl;
 
 var jswl = new JSWrapperLib();
 
