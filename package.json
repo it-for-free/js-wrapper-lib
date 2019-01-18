@@ -1,6 +1,6 @@
 {
   "name": "js-wrapper-lib",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "js functions wrappers library",
   "main": "./dist/jswl.js",
   "scripts": {

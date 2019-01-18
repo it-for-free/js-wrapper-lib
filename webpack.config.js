@@ -1,4 +1,5 @@
 "use strict";
+var path = require('path'); // для работы с path
 
 module.exports = {
   mode: 'development',
@@ -6,7 +7,7 @@ module.exports = {
       'jswl': './src/jswl.js'
   },
   output: {
-//    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
     library: 'jswl',
     libraryExport: 'default',
