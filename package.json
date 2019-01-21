@@ -1,12 +1,12 @@
 {
   "name": "js-wrapper-lib",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "js functions wrappers library",
   "main": "./dist/jswl.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.config.js",
-    "watch": "webpack --watch --mode=develompment"
+    "watch": "webpack --watch --mode=development"
   },
   "devDependencies": {
     "webpack": "^4.28.4",
