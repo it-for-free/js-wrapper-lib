@@ -17,9 +17,9 @@ jswl.functionName();
 jswl.isEmpty(value);
 ```
 
-## Публикация очередной версии
+## Сборка (`npm`)
 
-Сборка (`npm`):
+Сборка очередной версии:
 
 ```javascript
 npm run-script bulid
