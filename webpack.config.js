@@ -2,7 +2,7 @@
 var path = require('path'); // для работы с path
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: {
       'jswl': './src/jswl.js'
   },
@@ -13,7 +13,6 @@ module.exports = {
     libraryExport: 'default',
     libraryTarget: 'umd'
   },
-  watch: true,
   watchOptions: {
       aggregateTimeout: 500,
       poll: 1000 // порверяем измемения раз в секунду

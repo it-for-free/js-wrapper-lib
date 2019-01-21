@@ -5,7 +5,8 @@
   "main": "./dist/jswl.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config webpack.config.js"
+    "build": "webpack --config webpack.config.js",
+    "watch": "webpack --watch --mode=develompment"
   },
   "devDependencies": {
     "webpack": "^4.28.4",

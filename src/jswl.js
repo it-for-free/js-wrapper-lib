@@ -1,6 +1,6 @@
-export default jswl;
-
-var jswl = new JSWrapperLib();
+/**
+ * jswl
+ */
 
 /**
  * Набор обёрток, с более удобным синтаксисо
@@ -134,3 +134,5 @@ function JSWrapperLib() {
         console.log('Hello JSWL! ;)');
     }
 }
+
+export default new JSWrapperLib();
