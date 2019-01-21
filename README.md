@@ -19,6 +19,14 @@ jswl.isEmpty(value);
 
 ## Публикация очередной версии
 
+Сборка:
+
+```javascript
+npm run-script bulid
+```
+
+## Публикация очередной версии
+
 ```
 npm publish
 ```
