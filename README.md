@@ -19,7 +19,7 @@ jswl.isEmpty(value);
 
 ## Публикация очередной версии
 
-Сборка:
+Сборка (`npm`):
 
 ```javascript
 npm run-script bulid
