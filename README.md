@@ -17,12 +17,15 @@ jswl.functionName();
 jswl.isEmpty(value);
 ```
 
-## Сборка (`npm`)
+## Сброка и другая работа с `npm`
 
-Сборка очередной версии:
-
-```javascript
-npm run-script bulid
+Сборка:
+```shell
+npm run-script build
+```
+Отладочная сборка
+```shell
+npm run-script watch
 ```
 
 ## Публикация очередной версии
