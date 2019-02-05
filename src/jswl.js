@@ -52,13 +52,19 @@ function JSWrapperLib() {
      *  - = null
      *  - = ноль
      *  - = пустой строке
+     *  - = пустому массиву
      * 
      * @param {mixed} value  проверяемое значение
      * @returns {Boolean} 
      */
     this.isEmpty = function(value) {
-        return (typeof value === "undefined" || value === null 
-            || value ===  "" || value ===  0);
+        return (
+            typeof value === "undefined" 
+            || value === null 
+            || value ===  "" 
+            || value ===  0
+            || !(value.length !== null && value.length > 0) // not empty array
+        );
     }
     
     /**
