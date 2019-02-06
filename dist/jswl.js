@@ -152,7 +152,7 @@ function JSWrapperLib() {
      * Проверка на пустоту, пусто если:
      *  - тип = "undefined"
      *  - = null
-     *  - = ноль
+     *  - = ноль (как сторка или как число)
      *  - = пустой строке
      *  - = пустому массиву
      * 
@@ -165,6 +165,7 @@ function JSWrapperLib() {
             || value === null 
             || value ===  "" 
             || value ===  0
+            || value ===  "0"
             || !(value.length !== null && value.length > 0) // not empty array
         );
     }
