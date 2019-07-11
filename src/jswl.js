@@ -64,8 +64,8 @@ function JSWrapperLib() {
             || value ===  "" 
             || value ===  0
             || value ===  "0"
-            || !(self.isDefined(value.length) !== null
-                    && value.length > 0) // not empty array
+            || (self.isDefined(value.length)
+                    && value.length === 0) // not empty array
         );
     }
     
