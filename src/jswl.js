@@ -53,6 +53,7 @@ function JSWrapperLib() {
      *  - = ноль (как сторка или как число)
      *  - = пустой строке
      *  - = пустому массиву
+     *  - = false
      * 
      * @param {mixed} value  проверяемое значение
      * @returns {Boolean} 
@@ -65,7 +66,8 @@ function JSWrapperLib() {
             || value ===  0
             || value ===  "0"
             || (self.isDefined(value.length)
-                    && value.length === 0) // not empty array
+                    && value.length === 0) //  empty array
+            || value ===  false
         );
     }
     
