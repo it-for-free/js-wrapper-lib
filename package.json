@@ -23,7 +23,8 @@
     "helpers",
     "core",
     "functions",
-    "array unique"
+    "array unique",
+    "empty function like in php"
   ],
   "author": "it-for-free",
   "license": "MIT",

@@ -16,6 +16,15 @@ jswl.functionName();
 ```javascript
 jswl.isEmpty(value);
 ```
+### Usage in npm
+
+Example:
+
+```javascript
+import jswl from 'js-wrapper-lib';
+
+if (jswl.isEmpty(apiToken)) {....}
+```
 
 ## Сброка и другая работа с `npm`
 
@@ -37,4 +46,5 @@ npm publish
 ## Описание функций
 
 * `jswl.uniqueArray(arr)` -- вернет только уникальные значения массива `arr`.
+* `jswl.isEmpty(value)` -- функция максимально близкая к `empty()` из php.
 
