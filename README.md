@@ -34,3 +34,7 @@ npm run-script watch
 npm publish
 ```
 
+## Описание функций
+
+* `jswl.uniqueArray(arr)` -- вернет только уникальные значения массива `arr`.
+

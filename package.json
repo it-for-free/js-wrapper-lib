@@ -1,6 +1,6 @@
 {
   "name": "js-wrapper-lib",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "js functions wrappers library",
   "main": "./dist/jswl.js",
   "scripts": {
@@ -22,7 +22,8 @@
     "library",
     "helpers",
     "core",
-    "functions"
+    "functions",
+    "array unique"
   ],
   "author": "it-for-free",
   "license": "MIT",

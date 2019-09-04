@@ -245,6 +245,24 @@ function JSWrapperLib() {
     {
         console.log('Hello JSWL! ;)');
     }
+    
+    /**
+     * Вернет массив, оставив там только уникальные значения
+     * ( JavaScript 1.6 / ECMAScript 5) 
+     * @link https://stackoverflow.com/a/14438954
+     * 
+     * @param {array} arr исходный массив
+     * @return {array}
+     */
+    this.uniqueArray = function(arr)
+    {
+        function onlyUnique(value, index, self) { 
+            return self.indexOf(value) === index;
+        }
+        
+        var unique = arr.filter(onlyUnique); 
+        return unique;
+    }
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (new JSWrapperLib());
