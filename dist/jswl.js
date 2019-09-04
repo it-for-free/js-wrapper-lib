@@ -263,6 +263,27 @@ function JSWrapperLib() {
         var unique = arr.filter(onlyUnique); 
         return unique;
     }
+    
+    /**
+     * Удалит из массива все эелменты в строгом смысле совпадающие с 
+     * value
+     * 
+     * @param {array} arr
+     * @param {mixed} value элемент, равные которому надо удалить из массива
+     * @return {Array|JSWrapperLib.removeAllElementsLike.newArr}
+     */
+    this.removeAllElementsLike = function(arr, value) 
+    {
+        var newArr = [];
+        arr.forEach((currentElement, index, array) => {
+            if (currentElement !== value) {
+                newArr.push(currentElement);
+            }
+        });
+
+        return newArr;
+    }
+
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (new JSWrapperLib());
