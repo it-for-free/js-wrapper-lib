@@ -68,6 +68,7 @@ function JSWrapperLib() {
             || (self.isDefined(value.length)
                     && value.length === 0) //  empty array
             || value ===  false
+            || self.isObjectEmpty(value) //  empty object
         );
     }
     
@@ -181,6 +182,24 @@ function JSWrapperLib() {
 
         return newArr;
     }
+    
+    
+    /**
+     * Проверит является ли объект пустым
+     * 
+     * @param {object} obj
+     * @returns {Boolean}
+     */
+    this.isObjectEmpty = function(obj) {
+        
+        for(var prop in obj) {
+            if(obj.hasOwnProperty(prop))
+                return false;
+        }
+
+        return true;
+    }
+    
 
 }
 
