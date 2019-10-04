@@ -45,6 +45,27 @@ function JSWrapperLib() {
     {
         return (!(array.indexOf(value) === -1));
     }
+    
+    /**
+     * Проверит содержится ли хотя бы один элемент из первого массива 
+     * во втором
+     * 
+     * @param {array} needles массив значений, которые ищем
+     * @param {array} array   массив, в котором ищем
+     * @returns {Boolean}
+     */
+    this.isAnyInArray = function(needles, array)
+    {
+        var result = false;
+        for (var i = 0; i < needles.length; i++) {
+            
+            if (self.inArray(needles[i], array)) {
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
 
     /**
      * Проверка на пустоту, пусто если:
