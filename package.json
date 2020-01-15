@@ -1,36 +1,46 @@
 {
-  "name": "js-wrapper-lib",
-  "version": "1.0.7",
-  "description": "js functions wrappers library",
-  "main": "./dist/jswl.js",
-  "scripts": {
-    "test": "jest",
-    "build": "webpack --config webpack.config.js",
-    "watch": "webpack --watch --mode=development"
-  },
-  "devDependencies": {
-    "jest": "^24.9.0",
-    "webpack": "^4.28.4",
-    "webpack-cli": "^3.2.1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/it-for-free/js-wrapper-lib.git"
-  },
-  "keywords": [
-    "javascript",
-    "wrapper",
-    "library",
-    "helpers",
-    "core",
-    "functions",
-    "array unique",
-    "empty function like in php"
-  ],
-  "author": "it-for-free",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/it-for-free/js-wrapper-lib/issues"
-  },
-  "homepage": "https://github.com/it-for-free/js-wrapper-lib#readme"
+    "name": "js-wrapper-lib",
+    "version": "1.0.7",
+    "description": "js functions wrappers library",
+    "main": "./dist/jswl.js",
+    "scripts": {
+        "test": "jest",
+        "build": "webpack --config webpack.config.js",
+        "watch": "webpack --watch --mode=development"
+    },
+    "devDependencies": {
+        "@babel/plugin-transform-modules-commonjs": "^7.8.3",
+        "jest": "^24.9.0",
+        "webpack": "^4.28.4",
+        "webpack-cli": "^3.2.1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/it-for-free/js-wrapper-lib.git"
+    },
+    "keywords": [
+        "javascript",
+        "wrapper",
+        "library",
+        "helpers",
+        "core",
+        "functions",
+        "array unique",
+        "empty function like in php"
+    ],
+    "babel": {
+        "env": {
+            "test": {
+                "plugins": [
+                    "@babel/plugin-transform-modules-commonjs"
+                ]
+            }
+        }
+    },
+    "author": "it-for-free",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/it-for-free/js-wrapper-lib/issues"
+    },
+    "homepage": "https://github.com/it-for-free/js-wrapper-lib#readme"
 }

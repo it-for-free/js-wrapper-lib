@@ -27,9 +27,9 @@ function JSWrapperLib() {
      * @param {mixed} value  проверяемое значение
      * @returns {boolean}
      */
-    this.isNullOrUndefined = function(value)
+    this.isNullOrUndefined = function (value)
     {
-        return (typeof value === "undefined" 
+        return (typeof value === "undefined"
                 || value === null);
     }
 
@@ -41,11 +41,11 @@ function JSWrapperLib() {
      * @param {array} array
      * @returns {Boolean}
      */
-    this.inArray = function(value, array)
+    this.inArray = function (value, array)
     {
         return (!(array.indexOf(value) === -1));
     }
-    
+
     /**
      * Проверит содержится ли хотя бы один элемент из первого массива 
      * во втором
@@ -54,11 +54,11 @@ function JSWrapperLib() {
      * @param {array} array   массив, в котором ищем
      * @returns {Boolean}
      */
-    this.isAnyInArray = function(needles, array)
+    this.isAnyInArray = function (needles, array)
     {
         var result = false;
         for (var i = 0; i < needles.length; i++) {
-            
+
             if (self.inArray(needles[i], array)) {
                 result = true;
                 break;
@@ -79,20 +79,21 @@ function JSWrapperLib() {
      * @param {mixed} value  проверяемое значение
      * @returns {Boolean} 
      */
-    this.isEmpty = function(value) {
+    this.isEmpty = function (value) {
         return (
-            typeof value === "undefined" 
-            || value === null 
-            || value ===  "" 
-            || value ===  0
-            || value ===  "0"
+            typeof value === "undefined"
+            || value === null
+            || value === ""
+            || value === 0
+            || value === "0"
             || (self.isDefined(value.length)
                     && value.length === 0) //  empty array
-            || value ===  false
-            || self.isObjectEmpty(value) //  empty object
+            || value === false
+            || (self.isObject(value)
+                    && self.isObjectEmpty(value)) //  empty object
         );
     }
-    
+
     /**
      * Определено ли значение:
      * - тип не "undefined"
@@ -101,7 +102,7 @@ function JSWrapperLib() {
      * @param {mixed} value  проверяемое значение
      * @returns {Boolean} 
      */
-    this.isDefined = function(value) {
+    this.isDefined = function (value) {
         return (typeof value !== "undefined" && value !== null);
     }
 
@@ -114,7 +115,7 @@ function JSWrapperLib() {
      * @param {int} number  номер фрагмента (начиная с нуля)
      * @returns {string}
      */
-    this.getSquareBracketedFragmentByNumber = function(str, number) {
+    this.getSquareBracketedFragmentByNumber = function (str, number) {
 
         var nameFrags = self.getSquareBracketedFragments(str);
         return nameFrags[number];
@@ -133,11 +134,11 @@ function JSWrapperLib() {
      * @param {string} str  строка с фрагментами. окружеными квадратными скобками
      * @returns {array} массив строк
      */
-    this.getSquareBracketedFragments = function(str) {
+    this.getSquareBracketedFragments = function (str) {
 
         var nameFrags = str.split('['); // разбиваем по открывающей скобке
-        nameFrags.forEach(function(element, index, nameFrags) {
-            nameFrags[index] = element.replace(/\]/g, ""); 
+        nameFrags.forEach(function (element, index, nameFrags) {
+            nameFrags[index] = element.replace(/\]/g, "");
         });
         return nameFrags;
     }
@@ -150,22 +151,22 @@ function JSWrapperLib() {
      * @param {string} substr  подстрока
      * @returns {Boolean}
      */
-    this.checkForSubstring = function(str, substr)
+    this.checkForSubstring = function (str, substr)
     {
         return (str.indexOf(substr) !== -1);
     }
-    
+
     /**
      * Тестовый вызов jswl (привет мир) 
      * Test jswl exists
      *   
      * @returns {undefined}
      */
-    this.hello = function()
+    this.hello = function ()
     {
         console.log('Hello JSWL! ;)');
     }
-    
+
     /**
      * Вернет массив, оставив там только уникальные значения
      * ( JavaScript 1.6 / ECMAScript 5) 
@@ -174,16 +175,16 @@ function JSWrapperLib() {
      * @param {array} arr исходный массив
      * @return {array}
      */
-    this.uniqueArray = function(arr)
+    this.uniqueArray = function (arr)
     {
-        function onlyUnique(value, index, self) { 
+        function onlyUnique(value, index, self) {
             return self.indexOf(value) === index;
         }
-        
-        var unique = arr.filter(onlyUnique); 
+
+        var unique = arr.filter(onlyUnique);
         return unique;
     }
-    
+
     /**
      * Удалит из массива все эелменты в строгом смысле совпадающие с 
      * value
@@ -192,7 +193,7 @@ function JSWrapperLib() {
      * @param {mixed} value элемент, равные которому надо удалить из массива
      * @return {Array|JSWrapperLib.removeAllElementsLike.newArr}
      */
-    this.removeAllElementsLike = function(arr, value) 
+    this.removeAllElementsLike = function (arr, value)
     {
         var newArr = [];
         arr.forEach((currentElement, index, array) => {
@@ -203,25 +204,34 @@ function JSWrapperLib() {
 
         return newArr;
     }
-    
-    
+
+
     /**
      * Проверит является ли объект пустым
      * 
      * @param {object} obj
      * @returns {Boolean}
      */
-    this.isObjectEmpty = function(obj) {
-        
-        for(var prop in obj) {
-            if(obj.hasOwnProperty(prop))
+    this.isObjectEmpty = function (obj) {
+
+        for (var prop in obj) {
+            if (obj.hasOwnProperty(prop))
                 return false;
         }
 
         return true;
     }
-    
 
+    /**
+     * Проверит является ли значение объектом
+     * 
+     * @param {mixed} value
+     * @returns {Boolean}
+     */
+    this.isObject = function (value) {
+
+        return (typeof value === 'object');
+    }
 }
 
 export default new JSWrapperLib();

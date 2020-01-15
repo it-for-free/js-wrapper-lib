@@ -16,7 +16,7 @@ module.exports = [
         },
         watchOptions: {
             aggregateTimeout: 500,
-            poll: 1000 // порверяем измемения раз в секунду
+            poll: 1000 // порверяем изменения раз в секунду
         }
     },
     {  // без минификации
@@ -33,7 +33,7 @@ module.exports = [
         },
         watchOptions: {
             aggregateTimeout: 500,
-            poll: 1000 // порверяем измемения раз в секунду
+            poll: 1000 // порверяем изменения раз в секунду
         },
         optimization: {
             minimize: false

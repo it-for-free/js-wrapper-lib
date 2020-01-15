@@ -37,6 +37,12 @@ npm run-script build
 npm run-script watch
 ```
 
+## Тестирование
+
+```shell
+npm run test
+```
+
 ## Публикация очередной версии
 
 ```
