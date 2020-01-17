@@ -230,7 +230,41 @@ function JSWrapperLib() {
      */
     this.isObject = function (value) {
 
-        return (typeof value === 'object');
+        return self.isDefined(value) && (typeof value === 'object');
+    }
+    
+    /**
+     * Если передан объект, то попытается отдать значение поля с именем propertyName
+     * иначе вернет defaultValue
+     * 
+     * @param {mixed} obj
+     * @param {string} propertyName
+     * @param {mixed} defaultValue  что возвращать, на случай если это не объект
+     * @returns {mixed}
+     */
+    this.getPropIfObjectDefined = function (obj, propertyName, defaultValue = '')
+    {
+        if (self.isObject(obj)) {
+            return obj[propertyName];
+        } else {
+            return defaultValue;
+        }
+    }
+    
+    /**
+     * Вернет первый элемент из массива объектов, если указанное свойство этого объекта совпадает с указанным значением
+     * 
+     * @param {array} arr         массив объектов
+     * @param {string} propName  имя полуя по которому ищем
+     * @param {mixed} propValue  значение поля, которое ищем
+     * @returns {mixed}
+     */
+    this.getArrElementByObjectProp = (arr, propName, propValue) => {
+        var result = arr.filter(obj => {
+            return obj[propName] === propValue;          
+        });
+
+        return result[0];
     }
 }
 

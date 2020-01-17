@@ -13,3 +13,11 @@ test('1 isnt object ', () => {
   expect(jswl.isObject(1)).toBe(false);
 });
 
+test('null isnt object ', () => {
+  expect(jswl.isObject(null)).toBe(false);
+});
+
+test('"" isnt object ', () => {
+  expect(jswl.isObject('')).toBe(false);
+});
+
