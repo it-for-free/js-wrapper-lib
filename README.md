@@ -56,6 +56,7 @@ npm publish
 * `isEmpty(value)` -- функция максимально близкая к `empty()` из php.
 * `getArrElementByObjectProp(arr, propName, propValue)` -- Вернет первый элемент из массива объектов, если указанное свойство этого объекта совпадает с указанным значением
 * `getPropIfObjectDefined(obj, propertyName, defaultValue = '')` -- Если передан объект, то попытается отдать значение поля с именем propertyName иначе вернет defaultValue
+* `isObject(value)` -- проверит, что значение определено (напр. не null) и что является объектом.
 
 
 ### Массивы
