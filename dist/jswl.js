@@ -131,8 +131,8 @@ function JSWrapperLib() {
      */
     this.isNullOrUndefined = function (value)
     {
-        return (typeof value === "undefined"
-                || value === null);
+	return (typeof value === "undefined"
+		|| value === null);
     }
 
 
@@ -145,7 +145,7 @@ function JSWrapperLib() {
      */
     this.inArray = function (value, array)
     {
-        return (!(array.indexOf(value) === -1));
+	return (!(array.indexOf(value) === -1));
     }
 
     /**
@@ -158,15 +158,15 @@ function JSWrapperLib() {
      */
     this.isAnyInArray = function (needles, array)
     {
-        var result = false;
-        for (var i = 0; i < needles.length; i++) {
+	var result = false;
+	for (var i = 0; i < needles.length; i++) {
 
-            if (self.inArray(needles[i], array)) {
-                result = true;
-                break;
-            }
-        }
-        return result;
+	    if (self.inArray(needles[i], array)) {
+		result = true;
+		break;
+	    }
+	}
+	return result;
     }
 
     /**
@@ -182,18 +182,18 @@ function JSWrapperLib() {
      * @returns {Boolean} 
      */
     this.isEmpty = function (value) {
-        return (
-            typeof value === "undefined"
-            || value === null
-            || value === ""
-            || value === 0
-            || value === "0"
-            || (self.isDefined(value.length)
-                    && value.length === 0) //  empty array
-            || value === false
-            || (self.isObject(value)
-                    && self.isObjectEmpty(value)) //  empty object
-        );
+	return (
+		typeof value === "undefined"
+		|| value === null
+		|| value === ""
+		|| value === 0
+		|| value === "0"
+		|| (self.isDefined(value.length)
+			&& value.length === 0) //  empty array
+		|| value === false
+		|| (self.isObject(value)
+			&& self.isObjectEmpty(value)) //  empty object
+		);
     }
 
     /**
@@ -205,7 +205,7 @@ function JSWrapperLib() {
      * @returns {Boolean} 
      */
     this.isDefined = function (value) {
-        return (typeof value !== "undefined" && value !== null);
+	return (typeof value !== "undefined" && value !== null);
     }
 
     /**
@@ -219,8 +219,8 @@ function JSWrapperLib() {
      */
     this.getSquareBracketedFragmentByNumber = function (str, number) {
 
-        var nameFrags = self.getSquareBracketedFragments(str);
-        return nameFrags[number];
+	var nameFrags = self.getSquareBracketedFragments(str);
+	return nameFrags[number];
     }
 
 
@@ -238,11 +238,11 @@ function JSWrapperLib() {
      */
     this.getSquareBracketedFragments = function (str) {
 
-        var nameFrags = str.split('['); // разбиваем по открывающей скобке
-        nameFrags.forEach(function (element, index, nameFrags) {
-            nameFrags[index] = element.replace(/\]/g, "");
-        });
-        return nameFrags;
+	var nameFrags = str.split('['); // разбиваем по открывающей скобке
+	nameFrags.forEach(function (element, index, nameFrags) {
+	    nameFrags[index] = element.replace(/\]/g, "");
+	});
+	return nameFrags;
     }
 
     /**
@@ -255,7 +255,7 @@ function JSWrapperLib() {
      */
     this.checkForSubstring = function (str, substr)
     {
-        return (str.indexOf(substr) !== -1);
+	return (str.indexOf(substr) !== -1);
     }
 
     /**
@@ -266,7 +266,7 @@ function JSWrapperLib() {
      */
     this.hello = function ()
     {
-        console.log('Hello JSWL! ;)');
+	console.log('Hello JSWL! ;)');
     }
 
     /**
@@ -279,12 +279,12 @@ function JSWrapperLib() {
      */
     this.uniqueArray = function (arr)
     {
-        function onlyUnique(value, index, self) {
-            return self.indexOf(value) === index;
-        }
+	function onlyUnique(value, index, self) {
+	    return self.indexOf(value) === index;
+	}
 
-        var unique = arr.filter(onlyUnique);
-        return unique;
+	var unique = arr.filter(onlyUnique);
+	return unique;
     }
 
     /**
@@ -297,14 +297,14 @@ function JSWrapperLib() {
      */
     this.removeAllElementsLike = function (arr, value)
     {
-        var newArr = [];
-        arr.forEach((currentElement, index, array) => {
-            if (currentElement !== value) {
-                newArr.push(currentElement);
-            }
-        });
+	var newArr = [];
+	arr.forEach((currentElement, index, array) => {
+	    if (currentElement !== value) {
+		newArr.push(currentElement);
+	    }
+	});
 
-        return newArr;
+	return newArr;
     }
 
 
@@ -316,12 +316,12 @@ function JSWrapperLib() {
      */
     this.isObjectEmpty = function (obj) {
 
-        for (var prop in obj) {
-            if (obj.hasOwnProperty(prop))
-                return false;
-        }
+	for (var prop in obj) {
+	    if (obj.hasOwnProperty(prop))
+		return false;
+	}
 
-        return true;
+	return true;
     }
 
     /**
@@ -332,9 +332,9 @@ function JSWrapperLib() {
      */
     this.isObject = function (value) {
 
-        return self.isDefined(value) && (typeof value === 'object');
+	return self.isDefined(value) && (typeof value === 'object');
     }
-    
+
     /**
      * Если передан объект, то попытается отдать значение поля с именем propertyName
      * иначе вернет defaultValue
@@ -346,13 +346,13 @@ function JSWrapperLib() {
      */
     this.getPropIfObjectDefined = function (obj, propertyName, defaultValue = '')
     {
-        if (self.isObject(obj)) {
-            return obj[propertyName];
-        } else {
-            return defaultValue;
-        }
+	if (self.isObject(obj)) {
+	    return obj[propertyName];
+	} else {
+	    return defaultValue;
     }
-    
+    }
+
     /**
      * Вернет первый элемент из массива объектов, если указанное свойство этого объекта совпадает с указанным значением
      * 
@@ -362,11 +362,38 @@ function JSWrapperLib() {
      * @returns {mixed}
      */
     this.getArrElementByObjectProp = (arr, propName, propValue) => {
-        var result = arr.filter(obj => {
-            return obj[propName] === propValue;          
-        });
 
-        return result[0];
+	var result = undefined;
+	for (var i = 0; i < arr.length; i++) {
+	    if (arr[i][propName] === propValue) {
+		result = arr[i];
+		break;
+	    }
+	}
+
+	return result;
+    }
+    
+    /**
+     * Вернет первый элемент из массива объектов, если указанное свойство этого объекта совпадает с указанным значением
+     * 
+     * @param {object} arr       объект, поля которого также содержат объекты
+     * @param {string} propName  имя полуя по которому ищем
+     * @param {mixed} propValue  значение поля, которое ищем
+     * @returns {mixed}
+     */
+    this.getObjectPropBySubprop = (obj, subpropName, subpropValue) => {
+
+	var result = undefined;	
+	
+	for (var prop in obj) {
+	  if (obj[prop][subpropName] === subpropValue) {
+		result = obj[prop];
+		break;
+	    }
+	}
+	
+	return result;
     }
 }
 
