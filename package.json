@@ -4,7 +4,7 @@
     "description": "js functions wrappers library",
     "main": "./dist/jswl.js",
     "scripts": {
-        "test": "jest __tests__/getObjectPropBySubprop.test.js",
+        "test": "jest",
         "build": "webpack --config webpack.config.js",
         "watch": "webpack --watch --mode=development"
     },
