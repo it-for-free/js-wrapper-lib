@@ -93,6 +93,24 @@ function JSWrapperLib() {
 			&& self.isObjectEmpty(value)) //  empty object
 		);
     }
+    
+    /**
+     * Проверит, что все элементы массива не пусты (в смысле вызова для каждого jswl.isEmpty())
+     * 
+     * @param {array} value
+     * @returns {boolean}
+     */
+    this.allNotEmpty = function (arr) {
+	var result = true;
+	for (var i = 0; i < arr.length; i++) {
+	    if (self.isEmpty(arr[i])) {
+		result = false;
+		break;
+	    }
+	}
+
+	return result;
+    }
 
     /**
      * Определено ли значение:
@@ -255,7 +273,7 @@ function JSWrapperLib() {
      * Вернет первый элемент из массива объектов, если указанное свойство этого объекта совпадает с указанным значением
      * 
      * @param {array} arr         массив объектов
-     * @param {string} propName  имя полуя по которому ищем
+     * @param {string} propName  имя поля по которому ищем
      * @param {mixed} propValue  значение поля, которое ищем
      * @returns {mixed}
      */
@@ -276,7 +294,7 @@ function JSWrapperLib() {
      * Вернет первый элемент из массива объектов, если указанное свойство этого объекта совпадает с указанным значением
      * 
      * @param {object} arr       объект, поля которого также содержат объекты
-     * @param {string} propName  имя полуя по которому ищем
+     * @param {string} propName  имя поля по которому ищем
      * @param {mixed} propValue  значение поля, которое ищем
      * @returns {mixed}
      */

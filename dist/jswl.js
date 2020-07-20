@@ -195,6 +195,24 @@ function JSWrapperLib() {
 			&& self.isObjectEmpty(value)) //  empty object
 		);
     }
+    
+    /**
+     * Проверит, что все элементы массива не пусты (в смысле вызова для каждого jswl.isEmpty())
+     * 
+     * @param {array} value
+     * @returns {boolean}
+     */
+    this.allNotEmpty = function (arr) {
+	var result = true;
+	for (var i = 0; i < arr.length; i++) {
+	    if (self.isEmpty(arr[i])) {
+		result = false;
+		break;
+	    }
+	}
+
+	return result;
+    }
 
     /**
      * Определено ли значение:

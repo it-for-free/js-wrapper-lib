@@ -1,10 +1,10 @@
 {
     "name": "js-wrapper-lib",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "description": "js functions wrappers library",
     "main": "./dist/jswl.js",
     "scripts": {
-        "test": "jest",
+        "test": "jest __tests__/allNotEmpty.test.js",
         "build": "webpack --config webpack.config.js",
         "watch": "webpack --watch --mode=development"
     },
@@ -26,6 +26,7 @@
         "core",
         "functions",
         "array unique",
+	"all array elements not empty",
         "empty function like in php"
     ],
     "babel": {
