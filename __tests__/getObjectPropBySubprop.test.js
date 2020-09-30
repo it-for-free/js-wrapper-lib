@@ -8,6 +8,12 @@ let obj = {
     one2: {'id': 3, 'value': 33},
     one3: {'id': 8, 'value': 'mm'},
     one4: {'id': 4, 'value': 44},
+    one5: {
+	id: 4,
+	value: {
+	    subvalue: 125
+	}
+    },
  };
 
 test('for id 1  returns 11', () => {
@@ -27,6 +33,18 @@ test('for  788 returns undefined ', () => {
   expect(jswl.getObjectPropBySubprop(obj, 'id', 788)).toEqual(undefined);
 });
 
+test('for  "value.subvalue" path and 125 value  returns undefined ', () => {
+  expect(jswl.getObjectPropBySubprop(obj, 'value.subvalue', 125)).toEqual({
+	id: 4,
+	value: {
+	    subvalue: 125
+	}
+    });
+});
 
+test('for  "value.subvalue2" path  returns undefined ', () => {
+  expect(jswl.getObjectPropBySubprop(obj, 'value.subvalue2', 125))
+	.toEqual(undefined);
+});
 
 

@@ -375,7 +375,7 @@ function JSWrapperLib() {
      * Вернет первый элемент из массива объектов, если указанное свойство этого объекта совпадает с указанным значением
      * 
      * @param {array} arr         массив объектов
-     * @param {string} propName  имя полуя по которому ищем
+     * @param {string} propName  имя поля по которому ищем
      * @param {mixed} propValue  значение поля, которое ищем
      * @returns {mixed}
      */
@@ -392,11 +392,66 @@ function JSWrapperLib() {
 	return result;
     }
     
+    
+    /**
+     * Вернет первый элемент из массива объектов, если указанное свойство этого объекта совпадает с указанным значением
+     * 
+     * @param {array} arr         массив объектов
+     * @param {string} propName  имя-путь поля по которому ищем  например 'properties.id' (в качестве разделителей поддерживает точки)
+     * @param {mixed} propValue  значение поля, которое ищем
+     * @returns {mixed}
+     */
+    this.getArrElementByObjectProp = (arr, propName, propValue) => {
+
+	var result = undefined;
+	for (var i = 0; i < arr.length; i++) {
+	    if (self.getPropByPath(arr[i], propName) === propValue) {
+		result = arr[i];
+		break;
+	    }
+	}
+
+	return result;
+    }
+    
+    
+    /**
+     * Вернет значение из объекта по указанному пути (в качестве разделителей поддерживаются точки)
+     * 
+     * @param {object} obj   массив объектов
+     * @param {string} path  имя-путь поля по которому ищем  например 'properties.id' (в качестве разделителей поддерживает точки)
+     * @returns {mixed}
+     */
+    this.getPropByPath = (obj, path) => {
+
+	var value = undefined;
+	var found = false;
+	
+	var fragments = path.split('.');
+	value = obj;
+	for (var i = 0; i < fragments.length; i++) {
+	    if (self.isDefined(value)) {
+		found = true;
+		value = value[fragments[i]];
+	    } else {
+		found = false;
+		break;
+	    }
+	}
+
+        if (!found) {
+	    value = undefined;
+	};
+	
+	return value;
+    }
+    
+    
     /**
      * Вернет первый элемент из массива объектов, если указанное свойство этого объекта совпадает с указанным значением
      * 
      * @param {object} arr       объект, поля которого также содержат объекты
-     * @param {string} propName  имя полуя по которому ищем
+     * @param {string} path  имя-путь поля по которому ищем  например 'properties.id' (в качестве разделителей поддерживает точки)
      * @param {mixed} propValue  значение поля, которое ищем
      * @returns {mixed}
      */
@@ -405,7 +460,7 @@ function JSWrapperLib() {
 	var result = undefined;	
 	
 	for (var prop in obj) {
-	  if (obj[prop][subpropName] === subpropValue) {
+	  if (self.getPropByPath(obj[prop], subpropName) === subpropValue) {
 		result = obj[prop];
 		break;
 	    }
