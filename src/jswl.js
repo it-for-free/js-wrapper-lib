@@ -364,7 +364,7 @@ function JSWrapperLib() {
 	var foundValue = null;
 	
 	for (var prop in obj) {
-	    foundValue = self.getPropByPath(arr[i], propName);
+	    foundValue = self.getPropByPath(obj[prop], subpropName);
 	    if (foundValue.found && 
 		    (foundValue.value === subpropValue)) {
 		result = obj[prop];
