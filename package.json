@@ -1,10 +1,10 @@
 {
     "name": "js-wrapper-lib",
-    "version": "1.1.4",
+    "version": "1.1.5",
     "description": "js functions wrappers library",
     "main": "./src/jswl.js",
     "scripts": {
-        "test": "jest __tests__/getArrElementByObjectProp.test.js",
+        "test": "jest __tests__/getArrElementAndIndexByObjectProp.test.js",
         "build": "webpack --config webpack.config.js",
         "watch": "webpack --watch --mode=development"
     },
