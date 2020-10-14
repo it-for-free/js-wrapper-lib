@@ -14,7 +14,7 @@ let arr = [
 	    subvalue: 125,
 	    subvalue3: undefined
 	}
-    },
+    },  
 ];
 
 test('for id 1  returns 11', () => {
@@ -31,7 +31,7 @@ test('for id 3  returns obj ', () => {
 });
 
 test('for  788 returns undefined ', () => {
-  expect(jswl.getArrElementAndIndexByObjectProp(arr, 'id', 788)).toEqual(undefined);
+  expect(jswl.getArrElementAndIndexByObjectProp(arr, 'id', 788)).toEqual({value: undefined, key: undefined});
 });
 
 test('for  "value.subvalue" path and 125 value  returns undefined ', () => {
@@ -45,7 +45,7 @@ test('for  "value.subvalue" path and 125 value  returns undefined ', () => {
 
 test('for  "value.subvalue2" path  returns undefined ', () => {
   expect(jswl.getArrElementAndIndexByObjectProp(arr, 'value.subvalue2', 125))
-	.toEqual(undefined);
+	.toEqual({value: undefined, key: undefined});
 });
 
 test('for  "value.subvalue3" path  returns undefined in value prop ', () => {
@@ -55,6 +55,11 @@ test('for  "value.subvalue3" path  returns undefined in value prop ', () => {
 
 test('for id 3  returns 33 ', () => {  
   expect(jswl.getArrElementAndIndexByObjectProp(arr, 'id', 3)).toEqual({value: {'id': 3, 'value': 33}, key: 2});
+});
+
+
+test('for id 100500  returns {value: undefined, key: undefined} ', () => {  
+  expect(jswl.getArrElementAndIndexByObjectProp(arr, 'id', 100500)).toEqual({value: undefined, key: undefined});
 });
 
 

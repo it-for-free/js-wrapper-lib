@@ -372,18 +372,21 @@ function JSWrapperLib() {
     }
     
     /**
-     * Вернет undefined или объект вида:
+     * Вернет объект вида:
      * { key: key, value: value}, где value - первый элемент из массива объектов arr,
      * если указанное свойство этого объекта propName совпадает с указанным значением propValue
      * 
      * @param {array} arr        массив объектов
      * @param {string} propName  имя-путь поля по которому ищем  например 'properties.id' (в качестве разделителей поддерживает точки)
      * @param {mixed} propValue  значение поля, которое ищем
-     * @returns {mixed}
+     * @returns {object}  в случае неудачного поиска {value: undefiend, key: undefiend}
      */
     this.getArrElementAndIndexByObjectProp = (arr, propName, propValue) => {
 
-	var result = undefined;
+	var result = {
+	    key: i,
+	    value: arr[i]
+	};
 	var foundValue = null;
 	for (var i = 0; i < arr.length; i++) {
 	    foundValue = self.getPropByPath(arr[i], propName);
