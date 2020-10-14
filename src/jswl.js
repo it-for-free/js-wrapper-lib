@@ -266,29 +266,50 @@ function JSWrapperLib() {
 	    return obj[propertyName];
 	} else {
 	    return defaultValue;
+	}
     }
-    }
-
+    
     /**
-     * Вернет первый элемент из массива объектов, если указанное свойство этого объекта совпадает с указанным значением
+     * Вернет undefined или объект вида:
+     * { key: key, value: value}, где value - первый элемент из массива объектов arr,
+     * если указанное свойство этого объекта propName совпадает с указанным значением propValue
      * 
-     * @param {array} arr         массив объектов
+     * @param {array} arr        массив объектов
      * @param {string} propName  имя-путь поля по которому ищем  например 'properties.id' (в качестве разделителей поддерживает точки)
      * @param {mixed} propValue  значение поля, которое ищем
      * @returns {mixed}
      */
-    this.getArrElementByObjectProp = (arr, propName, propValue) => {
+    this.getArrElementAndIndexByObjectProp = (arr, propName, propValue) => {
 
 	var result = undefined;
 	for (var i = 0; i < arr.length; i++) {
 	    if (self.getPropByPath(arr[i], propName) === propValue) {
-		result = arr[i];
+		result = {
+		    key: i,
+		    value: arr[i]
+		};
 		break;
 	    }
 	}
 
 	return result;
     }
+
+    /**
+     * Вернет первый элемент из массива объектов, если указанное свойство этого объекта совпадает с указанным значением
+     * 
+     * @param {array} arr        массив объектов
+     * @param {string} propName  имя-путь поля по которому ищем  например 'properties.id' (в качестве разделителей поддерживает точки)
+     * @param {mixed} propValue  значение поля, которое ищем
+     * @returns {mixed}
+     */
+    this.getArrElementByObjectProp = (arr, propName, propValue) => {
+
+	var result = self.getArrElementAndIndexByObjectProp();
+
+	return result ? result.value : result;
+    }
+   
     
     
     /**
