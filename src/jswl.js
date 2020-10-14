@@ -273,28 +273,6 @@ function JSWrapperLib() {
      * Вернет первый элемент из массива объектов, если указанное свойство этого объекта совпадает с указанным значением
      * 
      * @param {array} arr         массив объектов
-     * @param {string} propName  имя поля по которому ищем
-     * @param {mixed} propValue  значение поля, которое ищем
-     * @returns {mixed}
-     */
-    this.getArrElementByObjectProp = (arr, propName, propValue) => {
-
-	var result = undefined;
-	for (var i = 0; i < arr.length; i++) {
-	    if (arr[i][propName] === propValue) {
-		result = arr[i];
-		break;
-	    }
-	}
-
-	return result;
-    }
-    
-    
-    /**
-     * Вернет первый элемент из массива объектов, если указанное свойство этого объекта совпадает с указанным значением
-     * 
-     * @param {array} arr         массив объектов
      * @param {string} propName  имя-путь поля по которому ищем  например 'properties.id' (в качестве разделителей поддерживает точки)
      * @param {mixed} propValue  значение поля, которое ищем
      * @returns {mixed}
