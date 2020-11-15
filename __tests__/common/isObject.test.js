@@ -1,5 +1,5 @@
 
-import jswl from '../src/jswl.js';
+import jswl from '../../src/jswl.js';
 
 test('{} is object ', () => {
   expect(jswl.isObject({})).toBe(true);

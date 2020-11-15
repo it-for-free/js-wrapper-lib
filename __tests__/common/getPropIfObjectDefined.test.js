@@ -1,5 +1,5 @@
 
-import jswl from '../src/jswl.js';
+import jswl from '../../src/jswl.js';
 
 test('for ({a: 1}, "a", "") returns 1 ', () => {
   expect(jswl.getPropIfObjectDefined({a: 1}, 'a', '')).toBe(1);
