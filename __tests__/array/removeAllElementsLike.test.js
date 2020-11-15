@@ -8,14 +8,14 @@ let originalStrArray = ['dog', 'snake', 'cat'];
 
 
 test('removeAllElementsLike 1', () => {
-    expect(jswl.array.removeAllElementsLike(originalArray, 1))
+    expect(jswl.arr.removeAllElementsLike(originalArray, 1))
     .toEqual(
         [2, '1', [1], null, undefined, null, 0, false]
     );
 });
 
 test('removeAllElementsLike null', () => {
-    expect(jswl.array.removeAllElementsLike(originalArray, null))
+    expect(jswl.arr.removeAllElementsLike(originalArray, null))
     .toEqual(
         [1, 2, '1', [1], undefined, 1, 0, false]
     );

@@ -17,24 +17,24 @@ let arr = [
 ];
 
 test('for id 1  returns 11', () => {
-  expect(jswl.getArrElementByObjectProp(arr, 'id', 1).value).toBe(11);
+  expect(jswl.arr.getArrElementByObjectProp(arr, 'id', 1).value).toBe(11);
   
 });
 
 test('for id 3  returns 33 ', () => {  
-  expect(jswl.getArrElementByObjectProp(arr, 'id', 3)).toEqual({'id': 3, 'value': 33});
+  expect(jswl.arr.getArrElementByObjectProp(arr, 'id', 3)).toEqual({'id': 3, 'value': 33});
 });
 
 test('for id 3  returns obj ', () => {  
-  expect(jswl.getArrElementByObjectProp(arr, 'value', 'mm')).toEqual({'id': 8, 'value': 'mm'});
+  expect(jswl.arr.getArrElementByObjectProp(arr, 'value', 'mm')).toEqual({'id': 8, 'value': 'mm'});
 });
 
 test('for  788 returns undefined ', () => {
-  expect(jswl.getArrElementByObjectProp(arr, 'id', 788)).toEqual(undefined);
+  expect(jswl.arr.getArrElementByObjectProp(arr, 'id', 788)).toEqual(undefined);
 });
 
 test('for  "value.subvalue" path and 125 value  returns undefined ', () => {
-  expect(jswl.getArrElementByObjectProp(arr, 'value.subvalue', 125)).toEqual({
+  expect(jswl.arr.getArrElementByObjectProp(arr, 'value.subvalue', 125)).toEqual({
 	id: 4,
 	value: {
 	    subvalue: 125
@@ -43,7 +43,7 @@ test('for  "value.subvalue" path and 125 value  returns undefined ', () => {
 });
 
 test('for  "value.subvalue2" path  returns undefined ', () => {
-  expect(jswl.getArrElementByObjectProp(arr, 'value.subvalue2', 125))
+  expect(jswl.arr.getArrElementByObjectProp(arr, 'value.subvalue2', 125))
 	.toEqual(undefined);
 });
 

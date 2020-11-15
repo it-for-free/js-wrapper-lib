@@ -4,8 +4,8 @@ import { common } from './common';
 
 const jswl = {
     ...common,
-    obj,
-    array
+    obj: obj,
+    arr: array
 }
 
 export default jswl;

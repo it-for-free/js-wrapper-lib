@@ -6,7 +6,7 @@ let originalArray = [0, 2, 3, [0], null, undefined, null, 0, '0'];
 
 
 test('uniqueArray 1', () => {
-    expect(jswl.array.uniqueArray(originalArray))
+    expect(jswl.arr.uniqueArray(originalArray))
     .toEqual(
         [0, 2, 3, [0], null, undefined, '0']
     );
