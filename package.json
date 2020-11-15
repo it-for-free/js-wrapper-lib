@@ -7,7 +7,8 @@
         "test": "jest __tests__",
         "build": "webpack --config webpack.config.js",
         "watch": "webpack --watch --mode=development",
-        "create-docs": "./node_modules/.bin/jsdoc -c jsdoc.json"
+        "create-docs": "./node_modules/.bin/jsdoc -c jsdoc.json",
+        "release": "npm run test && npm run create-docs && npm run build"
     },
     "devDependencies": {
         "@babel/core": "^7.12.3",
