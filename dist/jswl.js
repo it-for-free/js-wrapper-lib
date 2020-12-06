@@ -1377,6 +1377,45 @@ var file = {
   downloadBlobOrGetErrorInJson: downloadBlobOrGetErrorInJson
 };
 
+// CONCATENATED MODULE: ./src/string.js
+/**
+ * Добавит в начало строки другую строку (префикс), если только это строка уже НЕ начинается с данного префикса.
+ * 
+ * @param {string} str        к чему прибавляем
+ * @param {string} prefixStr  что прибаляем
+ * @returns {string}
+ */
+var addPrefixIfNotExists = function addPrefixIfNotExists(str, prefixStr) {
+  var result = str;
+
+  if (!str.startsWith(prefixStr)) {
+    result = prefixStr + str;
+  }
+
+  return result;
+};
+/**
+ * Удалит из начала строки указанную подстроку, если такая подстрока в начале строки имеется.
+ * 
+ * @param {string} str        откуда удаляем
+ * @param {string} prefixStr  что удаляем
+ * @returns {string}
+ */
+
+var removePrefixIfExists = function removePrefixIfExists(str, prefixStr) {
+  var result = str;
+
+  if (str.startsWith(prefixStr)) {
+    result = str.slice(prefixStr.length);
+  }
+
+  return result;
+};
+var str = {
+  addPrefixIfNotExists: addPrefixIfNotExists,
+  removePrefixIfExists: removePrefixIfExists
+};
+
 // CONCATENATED MODULE: ./src/jswl.js
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -1389,10 +1428,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var jswl = _objectSpread(_objectSpread({}, common), {}, {
   obj: obj_obj,
   arr: array_array,
-  file: file
+  file: file,
+  str: str
 });
 
 /* harmony default export */ var src_jswl = __webpack_exports__["default"] = (jswl);
