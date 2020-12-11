@@ -93,6 +93,9 @@ const isObject = (value) => {
  * @returns {Boolean}
  */
 const isObjectEmpty = (obj) => {
+    if (!isObject(obj)) {
+        throw new TypeError(`The argument must be an object. ${typeof obj} was given`);
+    }
 
     for (var prop in obj) {
         if (obj.hasOwnProperty(prop))
