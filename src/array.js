@@ -156,10 +156,10 @@ const getArrElementByObjectProp = (arr, propName, propValue) => {
  * и считает количество тех подэлементов, чье значение строго совпадает с neededElementValue
  * 
  * @param {array} arr                 исходный массив, в котором производится поиск
- * @param {string} subElementPath     путь узлам, значение которых нужно проверить 
+ * @param {string} subElementPath     путь узлам, значение которых нужно проверить, например 'sections[]floors[].value' 
  * @param {mixed} neededElementValue  значение подэлемента, которе считается подходящим
- * @param {string} arrayDelimeter     строка, которая сигнализирует, что в этом месте дерева лежит массива, по умолчанию = '[]'
- * @returns {result|Object}
+ * @param {string} arrayDelimeter     строка, которая сигнализирует, что в этом месте дерева лежит массив, который нужно обойти поэлементно, по умолчанию = '[]'
+ * @returns {int}
  */
 const countSubElementsWithValue = (arr, subElementPath, neededElementValue, arrayDelimeter = '[]') => {
     const fragments = subElementPath.split(arrayDelimeter);
@@ -192,6 +192,45 @@ const countSubElementsWithValue = (arr, subElementPath, neededElementValue, arra
     return result;
 }
 
+/**
+ * Посчитает суммарное число элементов в подмассивах, лежащих по путям, соответствующим переданному шаблону subArrayPathTemplate
+ * 
+ * @param {array} arr                     исходный массив, в котором производится поиск
+ * @param {string} subArrayPathTemplate   путь узлам, значение которых нужно проверить, например 'sections[]floors[].properties' -- ожидается, что в последнем сегменте лежит массив
+ * @param {string} arrayDelimeter         строка, которая сигнализирует, что в этом месте дерева лежит массив, который нужно обойти поэлементно, по умолчанию = '[]'
+ * @returns {int}
+ */
+const countElementsInSubArrays = (arr, subArrayPathTemplate, arrayDelimeter = '[]') => {
+    
+    const fragments = subArrayPathTemplate.split(arrayDelimeter);
+    let result = 0;
+   
+    if (fragments.length > 0) {
+	let firstPathSegment = fragments[0];
+	if (fragments.length > 1) {
+	    for (var i = 0; i < arr.length; i++) {
+		if (arr[i] && arr[i][firstPathSegment]) {
+		    result += countElementsInSubArrays(
+			arr[i][firstPathSegment], 
+			fragments.slice(1).join(arrayDelimeter)
+		    );
+		}
+	    }
+	} else {
+	    for (var i = 0; i < arr.length; i++) {
+		if (arr[i]) {
+		    let byPathResult = getPropByPath(arr[i], firstPathSegment);
+		    if (byPathResult.found && Array.isArray(byPathResult.value)) {
+			result += byPathResult.value.length;
+		    }
+		}
+	    }
+	}
+    }
+    	
+    return result;
+}
+
 const array = {
     inArray,
     isAnyInArray,
@@ -201,6 +240,7 @@ const array = {
     getArrElementAndIndexByObjectProp,
     getArrElementByObjectProp,
     countSubElementsWithValue,
+    countElementsInSubArrays,
 };
 
 export { array };
