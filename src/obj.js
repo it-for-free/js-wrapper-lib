@@ -10,13 +10,19 @@ import { isDefined } from './common';
  * Использует стандартную obj.hasOwnProperty() для проверки того, что значение реально существует в объекте.
  *
  * @param {object} obj   массив объектов
- * @param {string} path  имя-путь поля по которому ищем  например 'properties.id' (в качестве разделителей поддерживает точки)
- * @returns {mixed}
+ * @param {string} path  имя-путь поля по которому ищем,  например 'properties.id' или что то же самое '.properties.id' (в качестве разделителей поддерживает точки)
+ * @returns {object}  объект вида {found: bool, value: value} - где поле found показывает было ли определено значение по данному пути
+ *  (false если конечного или промежуточного свойства не было) 
  */
-const getPropByPath = (obj, path) => {
+export const getPropByPath = (obj, path) => {
+
     var result = {
         found: false,
         value: undefined,
+    }
+    
+    if (path.charAt(0) === '.') { // убираем точку вначале
+	path = path.substring(1);
     }
 
     var fragments = path.split('.');
@@ -47,7 +53,7 @@ const getPropByPath = (obj, path) => {
  * @param {mixed} propValue  значение поля, которое ищем
  * @returns {mixed}
  */
-const getObjectPropBySubprop = (obj, subpropName, subpropValue) => {
+export const getObjectPropBySubprop = (obj, subpropName, subpropValue) => {
     var result = undefined;
     var foundValue = null;
 

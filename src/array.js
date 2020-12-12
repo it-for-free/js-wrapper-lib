@@ -1,4 +1,6 @@
-import { isEmpty, getPropByPath } from './common';
+import { isEmpty } from './common';
+import { getPropByPath } from './obj';
+
 
 /**
  * Функции для работы с массивами
@@ -146,6 +148,50 @@ const getArrElementByObjectProp = (arr, propName, propValue) => {
 }
 
 
+/**
+ * Считает число вложенных подэлементов массива с нужным значением.
+ * 
+ * Сканирует массив по вложенным элементов вплоть до листьев дерева массива  
+ * на нужную глубину определяемые маршрутом subElementPath 
+ * и считает количество тех подэлементов, чье значение строго совпадает с neededElementValue
+ * 
+ * @param {array} arr                 исходный массив, в котором производится поиск
+ * @param {string} subElementPath     путь узлам, значение которых нужно проверить 
+ * @param {mixed} neededElementValue  значение подэлемента, которе считается подходящим
+ * @param {string} arrayDelimeter     строка, которая сигнализирует, что в этом месте дерева лежит массива, по умолчанию = '[]'
+ * @returns {result|Object}
+ */
+const countSubElementsWithValue = (arr, subElementPath, neededElementValue, arrayDelimeter = '[]') => {
+    const fragments = subElementPath.split(arrayDelimeter);
+    let result = 0;
+   
+    if (fragments.length > 0) {
+	let firstPathSegment = fragments[0];
+	if (fragments.length > 1) {
+	    for (var i = 0; i < arr.length; i++) {
+		if (arr[i] && arr[i][firstPathSegment]) {
+		    result += countSubElementsWithValue(
+			arr[i][firstPathSegment], 
+			fragments.slice(1).join(arrayDelimeter), 
+			neededElementValue
+		    );
+		}
+	    }
+	} else {
+	    for (var i = 0; i < arr.length; i++) {
+		if (arr[i]) {
+		    let byPathResult = getPropByPath(arr[i], firstPathSegment);
+		    if (byPathResult.found) {
+			result += (byPathResult.value === neededElementValue) ? 1 : 0;
+		    }
+		}
+	    }
+	}
+    }
+    	
+    return result;
+}
+
 const array = {
     inArray,
     isAnyInArray,
@@ -153,10 +199,8 @@ const array = {
     uniqueArray,
     allNotEmpty,
     getArrElementAndIndexByObjectProp,
-    getArrElementByObjectProp
+    getArrElementByObjectProp,
+    countSubElementsWithValue,
 };
-
-
-
 
 export { array };

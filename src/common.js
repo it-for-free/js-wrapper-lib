@@ -102,43 +102,6 @@ const isObjectEmpty = (obj) => {
     return true;
 }
 
-
-/**
- * Вернет значение из объекта по указанному пути (в качестве разделителей поддерживаются точки)/
- * Использует стандартную obj.hasOwnProperty() для проверки того, что значение реально существует в объекте.
- *
- * @param {object} obj   массив объектов
- * @param {string} path  имя-путь поля по которому ищем  например 'properties.id' (в качестве разделителей поддерживает точки)
- * @returns {mixed}
- */
-const getPropByPath = (obj, path) => {
-
-    var result = {
-        found: false,
-        value: undefined,
-    }
-
-    var fragments = path.split('.');
-    var value = obj;
-    for (var i = 0; i < fragments.length; i++) {
-        if (isDefined(value)) {
-            result.found = value.hasOwnProperty(fragments[i]) ?
-                true : false;
-            value = value[fragments[i]];
-        } else {
-            result.found = false;
-            break;
-        }
-    }
-
-    if (result.found) {
-        result.value = value;
-    }
-
-    return result;
-}
-
-
 /**
  * Проверка на пустоту, пусто если:
  *  - тип = "undefined"
@@ -198,7 +161,6 @@ const common = {
     isDefined,
     isObject,
     isObjectEmpty,
-    getPropByPath,
     isEmpty,
     getPropIfObjectDefined,
     getSquareBracketedFragments,
@@ -212,7 +174,6 @@ export {
     isDefined,
     isObject,
     isObjectEmpty,
-    getPropByPath,
     isEmpty,
     getPropIfObjectDefined,
     getSquareBracketedFragments,

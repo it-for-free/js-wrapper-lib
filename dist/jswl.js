@@ -963,40 +963,6 @@ var isObjectEmpty = function isObjectEmpty(obj) {
   return true;
 };
 /**
- * Вернет значение из объекта по указанному пути (в качестве разделителей поддерживаются точки)/
- * Использует стандартную obj.hasOwnProperty() для проверки того, что значение реально существует в объекте.
- *
- * @param {object} obj   массив объектов
- * @param {string} path  имя-путь поля по которому ищем  например 'properties.id' (в качестве разделителей поддерживает точки)
- * @returns {mixed}
- */
-
-
-var common_getPropByPath = function getPropByPath(obj, path) {
-  var result = {
-    found: false,
-    value: undefined
-  };
-  var fragments = path.split('.');
-  var value = obj;
-
-  for (var i = 0; i < fragments.length; i++) {
-    if (isDefined(value)) {
-      result.found = value.hasOwnProperty(fragments[i]) ? true : false;
-      value = value[fragments[i]];
-    } else {
-      result.found = false;
-      break;
-    }
-  }
-
-  if (result.found) {
-    result.value = value;
-  }
-
-  return result;
-};
-/**
  * Проверка на пустоту, пусто если:
  *  - тип = "undefined"
  *  - = null
@@ -1052,7 +1018,6 @@ var common = {
   isDefined: isDefined,
   isObject: isObject,
   isObjectEmpty: isObjectEmpty,
-  getPropByPath: common_getPropByPath,
   isEmpty: isEmpty,
   getPropIfObjectDefined: getPropIfObjectDefined,
   getSquareBracketedFragments: getSquareBracketedFragments,
@@ -1074,8 +1039,9 @@ var common = {
  * Использует стандартную obj.hasOwnProperty() для проверки того, что значение реально существует в объекте.
  *
  * @param {object} obj   массив объектов
- * @param {string} path  имя-путь поля по которому ищем  например 'properties.id' (в качестве разделителей поддерживает точки)
- * @returns {mixed}
+ * @param {string} path  имя-путь поля по которому ищем,  например 'properties.id' или что то же самое '.properties.id' (в качестве разделителей поддерживает точки)
+ * @returns {object}  объект вида {found: bool, value: value} - где поле found показывает было ли определено значение по данному пути
+ *  (false если конечного или промежуточного свойства не было) 
  */
 
 var obj_getPropByPath = function getPropByPath(obj, path) {
@@ -1083,6 +1049,12 @@ var obj_getPropByPath = function getPropByPath(obj, path) {
     found: false,
     value: undefined
   };
+
+  if (path.charAt(0) === '.') {
+    // убираем точку вначале
+    path = path.substring(1);
+  }
+
   var fragments = path.split('.');
   var value = obj;
 
@@ -1111,7 +1083,6 @@ var obj_getPropByPath = function getPropByPath(obj, path) {
  * @returns {mixed}
  */
 
-
 var getObjectPropBySubprop = function getObjectPropBySubprop(obj, subpropName, subpropValue) {
   var result = undefined;
   var foundValue = null;
@@ -1127,13 +1098,13 @@ var getObjectPropBySubprop = function getObjectPropBySubprop(obj, subpropName, s
 
   return result;
 };
-
 var obj_obj = {
   getPropByPath: obj_getPropByPath,
   getObjectPropBySubprop: getObjectPropBySubprop
 };
 
 // CONCATENATED MODULE: ./src/array.js
+
 
 /**
  * Функции для работы с массивами
@@ -1260,7 +1231,7 @@ var array_getArrElementAndIndexByObjectProp = function getArrElementAndIndexByOb
   var foundValue = null;
 
   for (var i = 0; i < arr.length; i++) {
-    foundValue = common_getPropByPath(arr[i], propName);
+    foundValue = obj_getPropByPath(arr[i], propName);
 
     if (foundValue.found && foundValue.value === propValue) {
       result = {
@@ -1287,6 +1258,50 @@ var getArrElementByObjectProp = function getArrElementByObjectProp(arr, propName
   var result = array_getArrElementAndIndexByObjectProp(arr, propName, propValue);
   return result ? result.value : result;
 };
+/**
+ * Считает число вложенных подэлементов массива с нужным значением.
+ * 
+ * Сканирует массив по вложенным элементов вплоть до листьев дерева массива  
+ * на нужную глубину определяемые маршрутом subElementPath 
+ * и считает количество тех подэлементов, чье значение строго совпадает с neededElementValue
+ * 
+ * @param {array} arr                 исходный массив, в котором производится поиск
+ * @param {string} subElementPath     путь узлам, значение которых нужно проверить 
+ * @param {mixed} neededElementValue  значение подэлемента, которе считается подходящим
+ * @param {string} arrayDelimeter     строка, которая сигнализирует, что в этом месте дерева лежит массива, по умолчанию = '[]'
+ * @returns {result|Object}
+ */
+
+
+var array_countSubElementsWithValue = function countSubElementsWithValue(arr, subElementPath, neededElementValue) {
+  var arrayDelimeter = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '[]';
+  var fragments = subElementPath.split(arrayDelimeter);
+  var result = 0;
+
+  if (fragments.length > 0) {
+    var firstPathSegment = fragments[0];
+
+    if (fragments.length > 1) {
+      for (var i = 0; i < arr.length; i++) {
+        if (arr[i] && arr[i][firstPathSegment]) {
+          result += countSubElementsWithValue(arr[i][firstPathSegment], fragments.slice(1).join(arrayDelimeter), neededElementValue);
+        }
+      }
+    } else {
+      for (var i = 0; i < arr.length; i++) {
+        if (arr[i]) {
+          var byPathResult = obj_getPropByPath(arr[i], firstPathSegment);
+
+          if (byPathResult.found) {
+            result += byPathResult.value === neededElementValue ? 1 : 0;
+          }
+        }
+      }
+    }
+  }
+
+  return result;
+};
 
 var array_array = {
   inArray: array_inArray,
@@ -1295,7 +1310,8 @@ var array_array = {
   uniqueArray: uniqueArray,
   allNotEmpty: array_allNotEmpty,
   getArrElementAndIndexByObjectProp: array_getArrElementAndIndexByObjectProp,
-  getArrElementByObjectProp: getArrElementByObjectProp
+  getArrElementByObjectProp: getArrElementByObjectProp,
+  countSubElementsWithValue: array_countSubElementsWithValue
 };
 
 // EXTERNAL MODULE: ./node_modules/regenerator-runtime/runtime.js
