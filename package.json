@@ -1,11 +1,11 @@
 {
     "name": "js-wrapper-lib",
-    "version": "2.0.5",
+    "version": "2.0.6",
     "description": "common purpose javascript functions library",
     "main": "./src/jswl.js",
     "scripts": {
         "test": "jest __tests__",
-	"testme": "jest __tests__/array/countElementsInSubArrays.test.js",
+	"testme": "jest __tests__/common/cloneByJson.test.js",
         "build": "webpack --config webpack.config.js",
         "watch": "webpack --watch --mode=development",
         "create-docs": "./node_modules/.bin/jsdoc -c jsdoc.json",

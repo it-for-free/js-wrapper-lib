@@ -1002,6 +1002,18 @@ var getPropIfObjectDefined = function getPropIfObjectDefined(obj, propertyName) 
   }
 };
 /**
+ * Вернет новое значение, прогнав переданное значение data через вызов JSON.parse(JSON.stringify(data))
+ * Можно использовать для клонирования объектов (если для них корректно отработает JSON.stringify())
+ * 
+ * @param {mixed} data данные (обычно ссылочного типа), которые нужно клонировать
+ * @returns {mixed}
+ */
+
+
+var cloneByJson = function cloneByJson(data) {
+  return JSON.parse(JSON.stringify(data));
+};
+/**
  * Тестовый вызов jswl (привет мир)
  * Test jswl exists
  *
@@ -1023,6 +1035,7 @@ var common = {
   getSquareBracketedFragments: getSquareBracketedFragments,
   getSquareBracketedFragmentByNumber: getSquareBracketedFragmentByNumber,
   checkForSubstring: checkForSubstring,
+  cloneByJson: cloneByJson,
   hello: hello
 };
 

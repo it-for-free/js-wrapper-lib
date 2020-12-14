@@ -147,6 +147,17 @@ const getPropIfObjectDefined = function (obj, propertyName, defaultValue = '') {
 }
 
 /**
+ * Вернет новое значение, прогнав переданное значение data через вызов JSON.parse(JSON.stringify(data))
+ * Можно использовать для клонирования объектов (если для них корректно отработает JSON.stringify())
+ * 
+ * @param {mixed} data данные (обычно ссылочного типа), которые нужно клонировать
+ * @returns {mixed}
+ */
+const cloneByJson = function (data) {
+    return JSON.parse(JSON.stringify(data));
+}
+
+/**
  * Тестовый вызов jswl (привет мир)
  * Test jswl exists
  *
@@ -166,6 +177,7 @@ const common = {
     getSquareBracketedFragments,
     getSquareBracketedFragmentByNumber,
     checkForSubstring,
+    cloneByJson,
     hello
 };
 
@@ -178,6 +190,7 @@ export {
     getPropIfObjectDefined,
     getSquareBracketedFragments,
     getSquareBracketedFragmentByNumber,
-    checkForSubstring
+    checkForSubstring,
+    cloneByJson,
 };
 export { common };
