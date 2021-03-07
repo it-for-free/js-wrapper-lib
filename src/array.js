@@ -114,20 +114,22 @@ const allNotEmpty = (arr) => {
 const getArrElementAndIndexByObjectProp = (arr, propName, propValue) => {
 
     var result = {
-        key: i,
-        value: arr[i]
+        key: undefined,
+        value: undefined
     };
-    var foundValue = null;
-    for (var i = 0; i < arr.length; i++) {
-        foundValue = getPropByPath(arr[i], propName);
-        if (foundValue.found &&
-            (foundValue.value === propValue)) {
-            result = {
-                key: i,
-                value: arr[i]
-            };
-            break;
-        }
+    if (Array.isArray(arr)) {
+	var foundValue = null;
+	for (var i = 0; i < arr.length; i++) {
+	    foundValue = getPropByPath(arr[i], propName);
+	    if (foundValue.found &&
+		(foundValue.value === propValue)) {
+		result = {
+		    key: i,
+		    value: arr[i]
+		};
+		break;
+	    }
+	}
     }
 
     return result;

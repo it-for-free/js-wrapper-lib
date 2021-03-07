@@ -64,3 +64,7 @@ test('for id 100500  returns {value: undefined, key: undefined} ', () => {
 
 
 
+test('for undefined, undefined, 100500  returns {value: undefined, key: undefined} ', () => {  
+  expect(jswl.arr.getArrElementAndIndexByObjectProp(undefined, undefined, 100500)).toEqual({value: undefined, key: undefined});
+});
+
