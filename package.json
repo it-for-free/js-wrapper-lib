@@ -1,6 +1,6 @@
 {
     "name": "js-wrapper-lib",
-    "version": "2.0.7",
+    "version": "2.0.8",
     "description": "common purpose javascript functions library",
     "main": "./src/jswl.js",
     "scripts": {
