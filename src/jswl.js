@@ -3,7 +3,7 @@ import { array } from './array';
 import { common } from './common';
 import { file } from './file';
 import { str } from './string';
-import { i18n } from './i18n/i18n';
+import i18n from './i18n/i18n';
 
 const jswl = {
     ...common,
