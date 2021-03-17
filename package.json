@@ -53,6 +53,5 @@
     "bugs": {
         "url": "https://github.com/it-for-free/js-wrapper-lib/issues"
     },
-    "homepage": "https://github.com/it-for-free/js-wrapper-lib#readme",
-    "type": "module"
+    "homepage": "https://github.com/it-for-free/js-wrapper-lib#readme"
 }
