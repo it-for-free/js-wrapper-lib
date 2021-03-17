@@ -1,6 +1,8 @@
 "use strict";
 var path = require('path'); // для работы с path
 
+//import path from 'path'; // для работы с path
+
 module.exports = [
     {
         mode: 'production',
